@@ -406,6 +406,31 @@ m5.add_command(label='abounotepad', image=aboutnotepad_icon, compound=LEFT,
 mymenu.add_cascade(label="Help",menu=m5)
 
 # "hacktoberfest" code exit function here
+def exit_func(event=None):
+  global file, text_changed
+  try:
+    if text_changed:
+      mbox = messagebox.askyesnocancel("warning", "do you want to save it")
+      
+      if mbox is True:
+        if file:
+          with open(file,"w") as op:
+            op.write(str(text.get(1.0,END)))
+            root.destroy()
+        else:
+
+          file = filedialog.asksaveasfile(mode="w",initialdir=os.getcwd(),defaultextension=".txt",
+                          filetypes=[
+                            ("Text document as",".txt"),
+                            ("All files","*.*")                 
+                          ])  
+          filetext = str(text.get(1.0,END))
+          file.write(filetext)
+          file.close()
+      else:
+        root.destroy()  
+  except Exception as w:
+    pass
 
 text = Text(root,font="Playbill 48",undo=True)
 text.pack(expand=True,fill=BOTH,padx=12)
