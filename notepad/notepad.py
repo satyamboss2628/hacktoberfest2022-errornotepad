@@ -405,7 +405,7 @@ m5.add_command(label='abounotepad', image=aboutnotepad_icon, compound=LEFT,
 
 mymenu.add_cascade(label="Help",menu=m5)
 
-
+# "hacktoberfest" code exit function here
 
 text = Text(root,font="Playbill 48",undo=True)
 text.pack(expand=True,fill=BOTH,padx=12)
